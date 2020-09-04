@@ -15,8 +15,8 @@
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
 
-    var scale = window.screen.height/background.height;
-    console.log(scale);
+    var scale = 1;
+    console.log(window.screen.height + " " + background.height);
     var drawing = false;
 
     //Convert touch event to mouse event
