@@ -97,9 +97,11 @@
       ctx = canvas.getContext('2d');
 
       scale = (window.screen.availWidth-20)/background.width;
-      
+
       if(!isFinite(scale)) {
         scale = 1;
+      } if (scale > 2) {
+        scale = 2;
       }
 
       pos = { x: 0, y: 0};
