@@ -20,8 +20,8 @@
     //Convert touch event to mouse event
     function convertMouseMove(e) {
       drawing = true;
-      console.log("Touch move"  + touch.pageX + " " + touch.pageY);
       var touch = e.touches[0];
+      console.log("Touch move" + " " + touch.pageX + " " + touch.pageY);
       var event = { clientX: touch.pageX, clientY: touch.pageY };
       draw(event);
     }
@@ -31,7 +31,7 @@
       drawing = true;
       //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
-      console.log("Touch start" + touch.pageX + " " + touch.pageY);
+      console.log("Touch start" + " " + touch.pageX + " " + touch.pageY);
       pos.x = touch.pageX - ctx.canvas.offsetLeft;
       pos.y = touch.pageY - ctx.canvas.offsetTop;
 
