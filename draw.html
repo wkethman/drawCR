@@ -10,7 +10,7 @@
 
   <script type="text/javascript">
     var procedure = localStorage["procedure"];
-    document.getElementById("headerLabel").textContent = procedure;
+    
     var canvas, ctx, pos, background;
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
@@ -105,6 +105,8 @@
     }
 
     function init() {
+      document.getElementById("headerLabel").textContent = procedure;
+      
       canvas = document.getElementById("c");
       ctx = canvas.getContext('2d');
 
