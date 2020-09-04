@@ -46,6 +46,8 @@
     function setPosition(e) {
       pos.x = e.clientX - ctx.canvas.offsetLeft;
       pos.y = e.clientY - ctx.canvas.offsetTop;
+
+      e.preventDefault();//Stops the default behavior
     }
 
     // resize canvas
@@ -70,6 +72,8 @@
       ctx.lineTo(pos.x, pos.y); // to
 
       ctx.stroke();
+
+      e.preventDefault();//Stops the default behavior
     }   
 
     function clear() {
