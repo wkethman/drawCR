@@ -19,19 +19,16 @@
     //Convert touch event to mouse event
     function convertMouseMove(e) {
       var touch = e.touches[0];
-      var mouseEvent = new MouseEvent("mousemove", {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      document.dispatchEvent(mouseEvent);
+      var event = { clientX: touch.pageX, clientY: touch.pageY };
+      draw(event);
     }
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
       //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
-      pos.x = touch.clientX - ctx.canvas.offsetLeft;
-      pos.y = touch.clientY - ctx.canvas.offsetTop;
+      pos.x = touch.pageX - ctx.canvas.offsetLeft;
+      pos.y = touch.pageY - ctx.canvas.offsetTop;
 
       /*var mouseEvent = new MouseEvent("mousedown", {
         clientX: touch.clientX,
