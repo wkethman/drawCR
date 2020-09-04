@@ -15,9 +15,11 @@
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
     var scale = 1.1;
+    var drawing = false;
 
     //Convert touch event to mouse event
     function convertMouseMove(e) {
+      drawing = true;
       console.log("Touch move");
       var touch = e.touches[0];
       console.log("Touch start" + touch.pageX + touch.pageY);
@@ -27,7 +29,7 @@
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
-
+      drawing = true;
       //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
       console.log("Touch start" + touch.pageX + touch.pageY);
@@ -39,6 +41,10 @@
         clientY: touch.clientY
       });
       document.dispatchEvent(mouseEvent);*/
+    }
+
+    function touchEnd(e) {
+      drawing = false;
     }
     
     //New position from mouse event
@@ -57,7 +63,7 @@
     // draw on canvas
     function draw(e) {
       console.log("Drawing..." + e.clientX + e.clientY);
-      //if (e.buttons !== 1) return;
+      if (e.buttons !== 1 || drawing == false) return;
 
       e.preventDefault();
       e.stopPropagation();
@@ -93,7 +99,9 @@
       canvas.addEventListener('touchstart', convertMouseDown);
 
       canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener("touchmove", convertMouseMove);
+      canvas.addEventListener('touchmove', convertMouseMove);
+
+      canvas.addEventListener('touchend', touchEnd);
        
       canvas.addEventListener('resize', resize);
       canvas.addEventListener('orientationchange', resize);
