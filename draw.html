@@ -23,10 +23,26 @@
       draw(e);
     }
 
+<<<<<<< HEAD
     function endPosition() {
       painting = false;
       ctx.beginPath();
     }
+=======
+      // Prevent scrolling when touching the canvas
+      document.body.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, false);
+      document.body.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      }, false);
+>>>>>>> parent of 278a9ee... Update draw.html
 
     function draw(e) {
       if (!painting) {
