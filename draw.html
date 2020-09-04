@@ -20,15 +20,17 @@
     function convertMouseMove(e) {
       console.log("Touch move");
       var touch = e.touches[0];
+      console.log("Touch start" + touch.pageX + touch.pageY);
       var event = { clientX: touch.pageX, clientY: touch.pageY };
       draw(event);
     }
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
-      console.log("Touch start");
+
       //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
+      console.log("Touch start" + touch.pageX + touch.pageY);
       pos.x = touch.pageX - ctx.canvas.offsetLeft;
       pos.y = touch.pageY - ctx.canvas.offsetTop;
 
@@ -54,6 +56,7 @@
 
     // draw on canvas
     function draw(e) {
+      console.log("Drawing..." + e.clientX + e.clientY);
       if (e.buttons !== 1) return;
 
       e.preventDefault();
