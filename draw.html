@@ -35,17 +35,13 @@
       canvas.addEventListener('orientationchange', resize);
 
       // Prevent scrolling when touching the canvas
-      document.body.addEventListener("touchstart", function (e) {
-        if (e.target == canvas) {
-          e.preventDefault();
-          e.stopPropagation();
-        }
+      canvas.addEventListener("touchstart", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
       }, false);
-      document.body.addEventListener("touchmove", function (e) {
-        if (e.target == canvas) {
+      canvas.addEventListener("touchmove", function (e) {
           e.preventDefault();
           e.stopPropagation();
-        }
       }, false);
 
       // Make sure the image is loaded first otherwise nothing will draw.
