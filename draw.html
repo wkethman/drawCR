@@ -62,8 +62,9 @@
 
     // draw on canvas
     function draw(e) {
-      console.log("Drawing..." + e.clientX + e.clientY);
+      
       if (e.buttons !== 1) return;
+      console.log("Drawing..." + e.clientX + e.clientY);
 
       e.preventDefault();
       e.stopPropagation();
