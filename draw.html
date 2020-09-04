@@ -18,6 +18,7 @@
 
     //Convert touch event to mouse event
     function convertMouseMove(e) {
+      console.log("Touch move");
       var touch = e.touches[0];
       var event = { clientX: touch.pageX, clientY: touch.pageY };
       draw(event);
@@ -25,6 +26,7 @@
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
+      console.log("Touch start");
       //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
       pos.x = touch.pageX - ctx.canvas.offsetLeft;
