@@ -10,45 +10,37 @@
 
   <script type="text/javascript">
     var procedure = localStorage["procedure"];
+    document.getElementById("headerLabel").textContent = procedure;
     var canvas, ctx, pos, background;
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
-    //background.src = "https://reverent-bohr-575d4c.netlify.app/images/Ileocecectomy.png"
     var scale = 1.1;
+    let painting = false
 
-    function init() {
-      console.log("init");
+    //functions
+    function startPosition(e) {
+      painting = true;
+      draw(e);
+    }
 
-      canvas = document.getElementById("c");
-      ctx = canvas.getContext('2d');
+    function endPosition() {
+      painting = false;
+      ctx.beginPath();
+    }
 
-      pos = { x: 0, y: 0};
-
-      document.getElementById("headerLabel").textContent = procedure;
-
-      canvas.addEventListener('mousemove', draw);
-      canvas.addEventListener('mousedown', setPosition);
-      canvas.addEventListener('touchmove', convertMouseMove);
-      canvas.addEventListener('touchstart', convertMouseDown);
-      //document.addEventListener('mouseenter', setPosition);  
-      canvas.addEventListener('resize', resize);
-      canvas.addEventListener('orientationchange', resize);
-
-      // Prevent scrolling when touching the canvas
-      canvas.addEventListener("touchstart", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
-      }, false);
-      canvas.addEventListener("touchmove", function (e) {
-          e.preventDefault();
-          e.stopPropagation();
-      }, false);
-
-      // Make sure the image is loaded first otherwise nothing will draw.
-      background.onload = function(){
-        ctx.drawImage(background, 0, 0, background.width*scale, background.height*scale); 
+    function draw(e) {
+      if (!painting) {
+        return;
       }
-      resize(ctx);
+      e.preventDefault();
+      e.stopPropagation();
+      ctx.lineWidth = strokeSize;
+      ctx.lineCap = "round";
+      ctx.lineTo(e.clientX, e.clientY);
+      ctx.stroke();
+      ctx.strokeStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(e.clientX, e.clientY);
     }
 
     //Convert touch event to mouse event
@@ -110,6 +102,38 @@
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.beginPath();
       ctx.drawImage(background, 0, 0, background.width*scale, background.height*scale); 
+    }
+
+    function init() {
+      canvas = document.getElementById("c");
+      ctx = canvas.getContext('2d');
+
+      pos = { x: 0, y: 0};
+
+      canvas.addEventListener('mousedown', startPosition);
+      canvas.addEventListener('touchstart', startPosition);
+      canvas.addEventListener('mouseup', endPosition);
+      canvas.addEventListener('touchend', endPosition);
+
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener("touchmove", function (e) {
+        var touch = e.touches[0];
+        var mouseEvent = new MouseEvent("mousemove", {
+          clientX: touch.clientX,
+          clientY: touch.clientY
+        });
+        draw(mouseEvent);
+      }, false);
+      
+      //document.addEventListener('mouseenter', setPosition);  
+      canvas.addEventListener('resize', resize);
+      canvas.addEventListener('orientationchange', resize);
+
+      // Make sure the image is loaded first otherwise nothing will draw.
+      background.onload = function(){
+        ctx.drawImage(background, 0, 0, background.width*scale, background.height*scale); 
+      }
+      resize(ctx);
     }
   </script>
 </head>
