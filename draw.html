@@ -27,9 +27,9 @@
       document.getElementById("headerLabel").textContent = procedure;
 
       document.addEventListener('mousemove', draw);
-      document.addEventListener('mousedown', setPosition);
-      document.addEventListener('touchmove', draw);
-      document.addEventListener('touchstart', setPosition);
+      //document.addEventListener('mousedown', setPosition);
+      document.addEventListener('touchmove', convertMouse);
+      //document.addEventListener('touchstart', setPosition);
       //document.addEventListener('mouseenter', setPosition);  
       document.addEventListener('resize', resize);
       document.addEventListener('orientationchange', resize);
@@ -40,14 +40,26 @@
       }
       resize(ctx);
     }
+
+    //Convert touch event to mouse event
+    function convertMouse(e) {
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousemove", {
+        pos.x: touch.clientX,
+        pos.y: touch.clientY
+      })
+      document.dispatchEvent(mouseEvent);
+    }
     
-    // new position from mouse event
+    //New position from mouse event
     function setPosition(e) {
+      e.preventDefault();
+      e.stopPropagation();
       pos.x = e.clientX - ctx.canvas.offsetLeft;
       pos.y = e.clientY - ctx.canvas.offsetTop;
     }
 
-    // resize canvas
+    //Resize canvas
     function resize() {
       ctx.canvas.width = window.innerWidth;
       ctx.canvas.height = window.innerHeight;
