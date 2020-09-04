@@ -22,8 +22,7 @@
       drawing = true;
       var touch = e.touches[0];
       console.log("Touch move" + " " + touch.clientX + " " + touch.clientY);
-      var event = { clientX: touch.pageX, clientY: touch.pageY };
-      draw(event);
+      draw(touch);
     }
 
     //Convert touch event to mouse event
@@ -62,7 +61,7 @@
     // draw on canvas
     function draw(e) {
       console.log(drawing + " " + e.clientX + " " + e.clientY);
-      if (e.buttons !== 1 || drawing) return;
+      if (e.buttons !== 1 || !drawing) return;
       console.log("Drawing..." + e.clientX + " " + e.clientY);
 
       e.preventDefault();
