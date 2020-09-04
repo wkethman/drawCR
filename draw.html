@@ -28,13 +28,16 @@
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
-      pos = getTouchPos(canvas, e);
+      //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
-      var mouseEvent = new MouseEvent("mousedown", {
+      pos.x = touch.clientX - ctx.canvas.offsetLeft;
+      pos.y = touch.clientY - ctx.canvas.offsetTop;
+
+      /*var mouseEvent = new MouseEvent("mousedown", {
         clientX: touch.clientX,
         clientY: touch.clientY
       });
-      document.dispatchEvent(mouseEvent);
+      document.dispatchEvent(mouseEvent);*/
     }
     
     //New position from mouse event
