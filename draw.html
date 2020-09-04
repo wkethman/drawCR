@@ -26,13 +26,25 @@
 
       document.getElementById("headerLabel").textContent = procedure;
 
-      document.addEventListener('mousemove', draw);
-      document.addEventListener('mousedown', setPosition);
-      document.addEventListener('touchmove', convertMouse);
-      //document.addEventListener('touchstart', setPosition);
+      canvas.addEventListener('mousemove', draw);
+      canvas.addEventListener('mousedown', setPosition);
+      canvas.addEventListener('touchmove', convertMouseMove);
+      canvas.addEventListener('touchstart', convertMouseDown);
       //document.addEventListener('mouseenter', setPosition);  
-      document.addEventListener('resize', resize);
-      document.addEventListener('orientationchange', resize);
+      canvas.addEventListener('resize', resize);
+      canvas.addEventListener('orientationchange', resize);
+
+      // Prevent scrolling when touching the canvas
+      document.body.addEventListener("touchstart", function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+      }, false);
+      document.body.addEventListener("touchmove", function (e) {
+        if (e.target == canvas) {
+          e.preventDefault();
+        }
+      }, false);
 
       // Make sure the image is loaded first otherwise nothing will draw.
       background.onload = function(){
@@ -42,9 +54,20 @@
     }
 
     //Convert touch event to mouse event
-    function convertMouse(e) {
+    function convertMouseMove(e) {
       var touch = e.touches[0];
       var mouseEvent = new MouseEvent("mousemove", {
+        clientX: touch.clientX,
+        clientY: touch.clientY
+      });
+      document.dispatchEvent(mouseEvent);
+    }
+
+    //Convert touch event to mouse event
+    function convertMouseDown(e) {
+      pos = getTouchPos(canvas, e);
+      var touch = e.touches[0];
+      var mouseEvent = new MouseEvent("mousedown", {
         clientX: touch.clientX,
         clientY: touch.clientY
       });
@@ -53,8 +76,6 @@
     
     //New position from mouse event
     function setPosition(e) {
-      e.preventDefault();
-      e.stopPropagation();
       pos.x = e.clientX - ctx.canvas.offsetLeft;
       pos.y = e.clientY - ctx.canvas.offsetTop;
     }
