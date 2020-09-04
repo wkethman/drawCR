@@ -63,7 +63,7 @@
     // draw on canvas
     function draw(e) {
       
-      if (e.buttons !== 1 | drawing) return;
+      if (e.buttons !== 1 || drawing) return;
       console.log("Drawing..." + e.clientX + e.clientY);
 
       e.preventDefault();
