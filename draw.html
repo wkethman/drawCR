@@ -29,9 +29,11 @@
       window.addEventListener('resize', resize);
       document.addEventListener('mousemove', draw);
       document.addEventListener('mousedown', setPosition);
+      document.addEventListener('touchmove', draw);
+      document.addEventListener('touchstart', setPosition);
       //document.addEventListener('mouseenter', setPosition);  
-      document.addEventListener('resize', resize, false);
-      document.addEventListener('orientationchange', resize, false);
+      document.addEventListener('resize', resize);
+      document.addEventListener('orientationchange', resize);
 
       // Make sure the image is loaded first otherwise nothing will draw.
       background.onload = function(){
