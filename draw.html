@@ -36,7 +36,7 @@
       e.stopPropagation();
       ctx.lineWidth = strokeSize;
       ctx.lineCap = "round";
-      ctx.lineTo(e.clientX, e.clientY);
+      ctx.lineTo(e.clientX - ctx.canvas.offsetLeft, e.clientY - ctx.canvas.offsetTop);
       ctx.stroke();
       ctx.strokeStyle = color;
       ctx.beginPath();
@@ -106,7 +106,7 @@
 
     function init() {
       document.getElementById("headerLabel").textContent = procedure;
-      
+
       canvas = document.getElementById("c");
       ctx = canvas.getContext('2d');
 
