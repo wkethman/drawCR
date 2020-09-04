@@ -15,9 +15,14 @@
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
 
-    var scale = 1;
+    var scale = window.screen.width/background.width;
     console.log("Window width: " + window.screen.width + " Image width: " + background.width);
     console.log(window.screen.width/background.width);
+
+    if(!isFinite(scale)) {
+      scale = 1;
+    }
+
     var drawing = false;
 
     //Convert touch event to mouse event
