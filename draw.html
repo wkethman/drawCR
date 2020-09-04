@@ -45,8 +45,8 @@
     function convertMouse(e) {
       var touch = e.touches[0];
       var mouseEvent = new MouseEvent("mousemove", {
-        pos.x: touch.clientX,
-        pos.y: touch.clientY
+        pos.x = touch.clientX,
+        pos.y = touch.clientY
       });
       document.dispatchEvent(mouseEvent);
     }
