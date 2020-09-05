@@ -14,7 +14,7 @@
     var canvas, ctx, pos, background;
     var background = new Image();
     background.src = "https://reverent-bohr-575d4c.netlify.app/images/"+procedure+".png";
-    background.crossOrigin = "anonymous";
+    //background.crossOrigin = "anonymous";
 
     var scale = 1;
     console.log("Window width: " + window.screen.width + " Image width: " + background.width);
@@ -133,7 +133,7 @@
             <a class="nav-link" href="javascript:clear()">Clear drawing<span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="javascript:printJS({printable: document.getElementById('c').toDataURL(), type: 'image', imageStyle: 'width:100%'});">Print<span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="javascript:printJS('main_con','html');">Print<span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
