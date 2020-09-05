@@ -3,7 +3,7 @@
  "short_name": "drawCR",
  "start_url": "index.html",
  "display": "fullscreen",
- "background_color": "white",
+ "background_color": "#0C4685",
  "description": "Provides clinicians with a method of teaching operative anatomy.",
  "icons": [
   {
