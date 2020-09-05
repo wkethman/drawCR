@@ -17,8 +17,8 @@
     //background.crossOrigin = "anonymous";
 
     var scale = 1;
-    console.log("Window width: " + window.screen.width + " Image width: " + background.width);
-    console.log(window.screen.width/background.width);
+    //console.log("Window width: " + window.screen.width + " Image width: " + background.width);
+    //console.log(window.screen.width/background.width);
 
     var drawing = false;
 
@@ -49,8 +49,10 @@
 
     //Resize canvas
     function resize() {
-      ctx.canvas.width = window.innerWidth;
-      ctx.canvas.height = window.innerHeight;
+      //ctx.canvas.width = window.innerWidth;
+      //ctx.canvas.height = window.innerHeight;
+      ctx.canvas.width = background.width*scale;
+      ctx.canvas.height = background.height*scale;
       ctx.drawImage(background, 0, 0, background.width*scale, background.height*scale);
     }
 
