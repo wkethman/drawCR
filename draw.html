@@ -25,24 +25,15 @@
     function convertMouseMove(e) {
       drawing = true;
       var touch = e.touches[0];
-      //console.log("Touch move" + " " + touch.clientX + " " + touch.clientY);
       draw(touch);
     }
 
     //Convert touch event to mouse event
     function convertMouseDown(e) {
       drawing = true;
-      //var touchPos = getTouchPos(canvas, e);
       var touch = e.touches[0];
-      //console.log("Touch start" + " " + touch.clientX + " " + touch.clientY);
       pos.x = touch.pageX - ctx.canvas.offsetLeft;
       pos.y = touch.pageY - ctx.canvas.offsetTop;
-
-      /*var mouseEvent = new MouseEvent("mousedown", {
-        clientX: touch.clientX,
-        clientY: touch.clientY
-      });
-      document.dispatchEvent(mouseEvent);*/
     }
 
     function touchEnd(e) {
@@ -64,13 +55,7 @@
 
     // draw on canvas
     function draw(e) {
-      //console.log(drawing + " " + e.clientX + " " + e.clientY);
       if (e.buttons !== 1 && !drawing) return;
-      //console.log("Drawing..." + e.clientX + " " + e.clientY);
-
-      //e.preventDefault();
-      //e.stopPropagation();
-
       ctx.beginPath();
 
       ctx.lineWidth = 4;
@@ -146,6 +131,9 @@
           <li class="nav-item active">
             <a class="nav-link" href="javascript:clear()">Clear drawing<span class="sr-only">(current)</span></a>
           </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:printJS({printable: document.querySelector('c').toDataURL(), type: 'image', imageStyle: 'width:100%'});">Print<span class="sr-only">(current)</span></a>
+          </li>
         </ul>
       </div>
     </nav>
@@ -157,6 +145,7 @@
   </body>
 
   <script src="./src/jquery-3.5.1.min.js"></script>
+  <script srcc="./src/print.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </html>
