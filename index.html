@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+  
+  <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
   <title>Surgical procedures</title>
@@ -34,8 +35,18 @@
   </script>
 </head>
   <body onload="init()">
-    <nav class="navbar navbar-dark bg-dark">
-      <span class="navbar-brand mb-1 h1">Surgical procedures</span>
+    <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">Surgical procedure</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="javascript:clear()">Add to Home<span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
     </nav>
     <main role="main" class="container-fluid">
       <div id="proc" class="mx-auto pt-4" style="width: 300px;">
